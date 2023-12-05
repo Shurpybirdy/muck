@@ -1,0 +1,18 @@
+extends KinematicBody2D
+
+var is_attacking = false
+
+func _process(delta):
+    if Input.is_action_just_pressed("attack") and not is_attacking:
+        is_attacking = true
+        $AnimatedSprite.play("attack")
+        $AnimatedSprite.connect("animation_finished", self, "_on_attack_animation_finished")
+    elif Input.is_action_pressed("left"):
+        # Handle movement logic
+    elif Input.is_action_pressed("right"):
+        # Handle movement logic
+
+func _on_attack_animation_finished():
+    is_attacking = false
+    $AnimatedSprite.disconnect("animation_finished", self, "_on_attack_animation_finished")
+    # Any other logic to be executed when the attack animation finishes
